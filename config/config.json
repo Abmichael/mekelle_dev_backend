@@ -1,0 +1,10 @@
+{
+	"development": {
+		"username": "root",
+		"password": null,
+		"database": "mekelle_dev",
+		"host": "127.0.0.1",
+		"dialect": "mariadb",
+		"timezone": "Africa/Addis_Ababa"
+	}
+}
