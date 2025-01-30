@@ -21,7 +21,9 @@ const userRoutes = require("./routes/user");
 const tourismRoutes = require('./routes/tourism');
 const serviceRoutes = require('./routes/services');
 const businessRoutes = require('./routes/business');
+const mapRoutes = require('./routes/map');
 
+app.use('/api/map', mapRoutes);
 app.use('/api/businesses', businessRoutes);
 app.use('/api/services', serviceRoutes);
 app.use('/api/tourism', tourismRoutes);
