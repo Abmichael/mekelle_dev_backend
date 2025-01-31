@@ -14,7 +14,6 @@ module.exports = {
   async listUpcoming(req, res) {
     try {
       const events = await Event.findAll({
-        where: { date: { [Sequelize.Op.gte]: new Date() } },
         order: [["date", "ASC"]],
       });
       res.json(events);
