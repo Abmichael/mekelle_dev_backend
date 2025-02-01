@@ -39,6 +39,19 @@ module.exports = {
 
   async registerForEvent(req, res) {
     try {
+      const existingRegistration = await EventRegistration.findOne({
+        where: {
+          UserId: req.user.id,
+          EventId: req.params.eventId,
+        },
+      });
+
+      if (existingRegistration) {
+        return res
+          .status(400)
+          .json({ error: "Already registered for this event" });
+      }
+
       const registration = await EventRegistration.create({
         UserId: req.user.id,
         EventId: req.params.eventId,

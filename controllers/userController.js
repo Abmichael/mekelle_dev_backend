@@ -1,4 +1,4 @@
-const { News, Event, Sequelize } = require("../models");
+const { News, Event, Sequelize, User } = require("../models");
 const { Op } = require("sequelize");
 
 module.exports = {
@@ -29,6 +29,19 @@ module.exports = {
     } catch (error) {
       console.error("Dashboard error:", error);
       res.status(500).json({ error: "Failed to load dashboard" });
+    }
+  },
+  async getRegisteredUsers(req, res) {
+    try {
+      const users = await User.findAll({
+        attributes: ["id", "email", "createdAt"],
+        order: [["createdAt", "DESC"]],
+      });
+
+      res.json(users);
+    } catch (error) {
+      console.error("Error fetching registered users:", error);
+      res.status(500).json({ error: "Failed to fetch registered users" });
     }
   },
 };
