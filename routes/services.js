@@ -1,6 +1,7 @@
 const router = require("express").Router();
 const passport = require("passport");
 const serviceController = require("../controllers/serviceController");
+const { isCitizen } = require("../middlewares/roleMiddleware");
 
 // Public routes
 router.get("/", serviceController.listServices);
@@ -11,12 +12,14 @@ router.get("/:serviceId/feedback", serviceController.listServiceFeedback);
 router.post(
   "/:serviceId/feedback",
   passport.authenticate("jwt", { session: false }),
+  isCitizen,
   serviceController.submitFeedback
 );
 
 router.patch(
   "/:serviceId/feedback/:feedbackId",
   passport.authenticate("jwt", { session: false }),
+  isCitizen,
   serviceController.updateFeedback
 );
 

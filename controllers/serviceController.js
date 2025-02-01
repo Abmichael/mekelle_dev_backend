@@ -50,7 +50,7 @@ module.exports = {
       const feedback = await ServiceFeedback.findOne({
         where: {
           id: req.params.feedbackId,
-          UserId: req.user.id, // Ensure user owns the feedback
+          UserId: req.user.id,
         },
       });
 
